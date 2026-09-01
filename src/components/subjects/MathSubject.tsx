@@ -1,14 +1,116 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import LigatureIcon from '../LigatureIcon';
 import { ActivePage } from '@/lib/types';
-import {CheckCircle2, Clock, DollarSign, Star, Zap, BookOpen, Users, Check, Timer, GraduationCap} from 'lucide-react';
+import { CheckCircle2, Clock, DollarSign, Star, Zap, Check, Timer, GraduationCap } from 'lucide-react';
+
 interface SubjectComponentProps {
   onNavigate: (page: ActivePage, subjectTitle?: string) => void;
 }
 
-export default function MathSubject({ onNavigate }: SubjectComponentProps) {
+const GRADE_TOPICS: { grade: string; band: string; topics: string[] }[] = [
+  {
+    grade: 'Grade 1',
+    band: 'Elementary',
+    topics: ['Counting and skip counting', 'Number bonds and fact families', 'Addition and subtraction', 'Basic shapes', 'Time and money', 'Word problems'],
+  },
+  {
+    grade: 'Grade 2',
+    band: 'Elementary',
+    topics: ['Number sense and patterns', 'Addition and subtraction strategies', 'Comparing and ordering numbers', '2D and 3D shapes', 'Measurement', 'Word problems'],
+  },
+  {
+    grade: 'Grade 3',
+    band: 'Elementary',
+    topics: ['Place value', 'Multiplication and division facts', 'Introduction to fractions', 'Area and perimeter', 'Bar graphs and line plots', 'Word problems'],
+  },
+  {
+    grade: 'Grade 4',
+    band: 'Elementary',
+    topics: ['Fractions and decimals', 'Multi-digit multiplication', 'Factors and multiples', 'Angles and lines', 'Data and graphing', 'Multi-step word problems'],
+  },
+  {
+    grade: 'Grade 5',
+    band: 'Elementary',
+    topics: ['Operations with fractions', 'Decimal operations', 'Volume', 'Coordinate plane', 'Order of operations', 'Measurement conversions'],
+  },
+  {
+    grade: 'Grade 6',
+    band: 'Middle School',
+    topics: ['Ratios and unit rates', 'Dividing fractions', 'Negative numbers', 'Expressions and equations', 'Area, surface area and volume', 'Statistical thinking'],
+  },
+  {
+    grade: 'Grade 7',
+    band: 'Middle School',
+    topics: ['Proportional relationships', 'Operations with rational numbers', 'Linear expressions', 'Scale drawings', 'Probability', 'Circles, area and circumference'],
+  },
+  {
+    grade: 'Grade 8',
+    band: 'Middle School',
+    topics: ['Linear equations and slope', 'Functions', 'Systems of equations', 'Exponents and scientific notation', 'Pythagorean theorem', 'Transformations and congruence'],
+  },
+  {
+    grade: 'Algebra 1',
+    band: 'High School',
+    topics: ['Linear equations and inequalities', 'Systems of equations', 'Quadratic functions and factoring', 'Exponential functions', 'Polynomials', 'Data and regression'],
+  },
+  {
+    grade: 'Geometry',
+    band: 'High School',
+    topics: ['Proofs and logical reasoning', 'Congruence and similarity', 'Right triangle trigonometry', 'Circles', 'Coordinate geometry', 'Volume and solids'],
+  },
+  {
+    grade: 'Algebra 2',
+    band: 'High School',
+    topics: ['Polynomial and rational functions', 'Logarithms and exponentials', 'Complex numbers', 'Sequences and series', 'Trigonometric functions', 'Probability and statistics'],
+  },
+  {
+    grade: 'Precalculus & Calculus',
+    band: 'High School',
+    topics: ['Trigonometric identities', 'Vectors and matrices', 'Limits and continuity', 'Derivatives and applications', 'Integrals', 'AP Calculus AB and BC'],
+  },
+];
+
+const FAQS = [
+  {
+    q: 'Which math courses do you cover?',
+    a: "Grade 1 through Grade 12, following the sequence US schools actually use. That means elementary number sense and fractions, middle school ratios and proportional reasoning, then Algebra 1, Geometry, Algebra 2, Precalculus and Calculus at high school level. We also cover Integrated Math 1, 2 and 3 for districts using that pathway, along with AP Calculus AB and BC, AP Statistics, and SAT and ACT math.",
+  },
+  {
+    q: 'Do you follow Common Core math standards?',
+    a: "Where your state uses them, yes. Most states teach to Common Core-aligned math standards, but not all: Texas follows the TEKS, Florida the B.E.S.T. Standards, and Virginia the Standards of Learning. Because we match tutors by state, your child works with someone who knows the sequence their classroom actually follows rather than a national default.",
+  },
+  {
+    q: 'My child is behind. Where should we start?',
+    a: "Almost never at the topic they are currently failing. Math is cumulative, so a student struggling with Algebra 1 usually has an unresolved gap in fractions, negative numbers or proportional reasoning from middle school. The free trial lesson exists partly to find that gap. Fixing the foundation is slower at first and considerably faster overall than re-teaching the current chapter.",
+  },
+  {
+    q: 'Should my child take Algebra 1 in Grade 8?',
+    a: "Only if the Grade 6 to 8 material is genuinely secure, particularly ratios, proportional reasoning and operations with rational numbers. Accelerating a student who has not consolidated those produces a shaky Algebra 1 year and weakens everything built on top of it. Taking Algebra 1 in Grade 9 still leaves a full pathway through Precalculus and Calculus before graduation.",
+  },
+  {
+    q: 'Can you help with SAT and ACT math?',
+    a: "Yes, and the two need different preparation. The digital SAT is adaptive, so accuracy early in a module shapes the difficulty of what follows, and it allows a calculator throughout. The ACT math section is longer, faster paced and reaches slightly further into trigonometry. We prepare students for the specific test they are sitting rather than treating them as interchangeable.",
+  },
+  {
+    q: 'How are lessons conducted?',
+    a: "Live, one-to-one, by video call, using an interactive whiteboard built for mathematical notation so working can be shown step by step rather than described. Lessons are recorded to your account, which matters more in math than most subjects: a student revisiting how a method was set up will usually learn more than from re-reading a finished answer.",
+  },
+  {
+    q: 'Is there a free trial lesson?',
+    a: "Yes. The first session is free and no credit card is required. We use it to establish where your child actually stands against their grade-level standards and to check the tutor is a good fit. If you decide not to continue, that is the end of it.",
+  },
+  {
+    q: 'What if my child does not get on with the tutor?',
+    a: "We rematch at no charge. In math especially, the fit matters: a student who has lost confidence needs a different approach from one who is bored and racing ahead. Rematching is routine, costs nothing, and does not use up a session.",
+  },
+];
+
+export default function MathSubjectUS({ onNavigate }: SubjectComponentProps) {
+  const [activeFaq, setActiveFaq] = useState<number | null>(null);
+  const toggleFaq = (idx: number) => setActiveFaq(activeFaq === idx ? null : idx);
+
   return (
     <div className="bg-surface font-body-md text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
       {/* Hero Section */}
@@ -17,13 +119,15 @@ export default function MathSubject({ onNavigate }: SubjectComponentProps) {
           <div className="flex-1 space-y-8">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary-container/10 text-primary rounded-full border border-primary/20">
               <Check size={18} />
-              <span className="font-label-sm text-label-sm font-semibold">UK National Curriculum Standard</span>
+              <span className="font-label-sm text-label-sm font-semibold">Matched to Your State&apos;s Standards</span>
             </div>
             <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface leading-tight font-bold">
-              Online Math Tutor in the UK
+              Online Math Tutor in USA
             </h1>
             <p className="font-body-lg text-body-lg text-on-surface-variant max-w-xl font-sans">
-              Expert support for Year 1-13 students. From algebra to calculus, our highly qualified tutors help you truly understand and solve problems yourself.
+              One-to-one math tutoring for Grades 1&ndash;12, from counting and fractions through Algebra,
+              Geometry, Precalculus and AP Calculus. Every tutor is matched to the math sequence your child&apos;s
+              school actually runs, and to the state test they will sit.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button
@@ -34,7 +138,7 @@ export default function MathSubject({ onNavigate }: SubjectComponentProps) {
                 <LigatureIcon name="arrow_forward" />
               </button>
               <button
-                onClick={() => onNavigate('a-levels')}
+                onClick={() => onNavigate('pricing')}
                 className="border-2 border-royal-purple text-royal-purple px-8 py-4 rounded-xl font-headline-md text-headline-md flex items-center justify-center gap-2 hover:bg-royal-purple/5 transition-all font-bold cursor-pointer"
               >
                 View Pricing
@@ -56,14 +160,14 @@ export default function MathSubject({ onNavigate }: SubjectComponentProps) {
                 />
               </div>
               <p className="font-label-md text-label-md text-on-surface-variant font-medium">
-                Trusted by <span className="font-bold text-on-surface">500+ Parents</span> across the UK
+                Serving families in <span className="font-bold text-on-surface">all 50 states</span>
               </p>
             </div>
           </div>
           <div className="flex-1 relative w-full">
             <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500">
               <img
-                alt="Student learning math"
+                alt="A student working through math problems with an online tutor"
                 className="w-full object-cover"
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxUe8AfNh5j6GE4SCY5PiIF8QFBu7_bPfxEGGehD2D4qSWXGySvJRi8layktwqTJ3jF-0nC8VVRUxRTSb7OownS0l1Kq5ub2qTuLfct_oh3bw6Jqe9x11Kuz4feu3QDsF8dRVXOPFO5KePXBai4ho8ksjPfKSZASvd1RfubQ3awIJmgKXLD4KnXdLUn8-ZgCTJ7GqyjCd4Wwp41873Ht2EQPOm9QHEhd0d2x5fcb57j1khPzQy-ilzvzTCASlyyrKbVa01-BFdgX_gJnQ"
               />
@@ -80,8 +184,8 @@ export default function MathSubject({ onNavigate }: SubjectComponentProps) {
           <div className="text-center mb-16 space-y-4">
             <h2 className="font-headline-lg text-headline-lg text-on-surface font-bold">What We Offer</h2>
             <p className="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">
-              Premium quality math tuition designed for the way modern students learn. 
-              Personalized focus, complete flexibility, and results that speak for themselves.
+              Searching for a math tutor near you? Online tutoring removes the geography problem entirely. Your
+              child works with a specialist in their exact course, not whoever happens to be available locally.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -91,16 +195,17 @@ export default function MathSubject({ onNavigate }: SubjectComponentProps) {
               </div>
               <h3 className="font-headline-md text-headline-md text-on-surface font-bold">Flexible Timings</h3>
               <p className="font-body-md text-body-md text-on-surface-variant">
-                Customise timings to fit your schedule. Reschedule with ease if things change.
+                Sessions scheduled around school, sports and activities, with tutors available across every US
+                time zone from Eastern to Pacific.
               </p>
               <ul className="space-y-3 pt-2">
                 <li className="flex items-center gap-3 font-label-md text-label-md text-on-surface font-medium">
-                   <CheckCircle2 className="text-lime-green shrink-0" size={20} fill="currentColor" stroke="white" />
-                 Evening &amp; Weekend Slots
+                  <CheckCircle2 className="text-lime-green shrink-0" size={20} fill="currentColor" stroke="white" />
+                  Evening &amp; weekend slots
                 </li>
                 <li className="flex items-center gap-3 font-label-md text-label-md text-on-surface font-medium">
-                   <CheckCircle2 className="text-lime-green shrink-0" size={20} fill="currentColor" stroke="white" />
-                  Flexible Duration
+                  <CheckCircle2 className="text-lime-green shrink-0" size={20} fill="currentColor" stroke="white" />
+                  Reschedule up to two hours ahead
                 </li>
               </ul>
             </div>
@@ -110,16 +215,17 @@ export default function MathSubject({ onNavigate }: SubjectComponentProps) {
               </div>
               <h3 className="font-headline-md text-headline-md text-on-surface font-bold">Affordable Rates</h3>
               <p className="font-body-md text-body-md text-on-surface-variant">
-                Competitive pricing with various discount packages for long-term learning goals.
+                Clear per-hour pricing in US dollars with discounted lesson bundles. No registration fee and no
+                minimum contract.
               </p>
               <ul className="space-y-3 pt-2">
                 <li className="flex items-center gap-3 font-label-md text-label-md text-on-surface font-medium">
                   <CheckCircle2 className="text-lime-green shrink-0" size={20} fill="currentColor" stroke="white" />
-                  Free Trial Session
+                  Free trial session
                 </li>
                 <li className="flex items-center gap-3 font-label-md text-label-md text-on-surface font-medium">
                   <CheckCircle2 className="text-lime-green shrink-0" size={20} fill="currentColor" stroke="white" />
-                  Standard Refund Policy
+                  Cancel anytime
                 </li>
               </ul>
             </div>
@@ -129,16 +235,17 @@ export default function MathSubject({ onNavigate }: SubjectComponentProps) {
               </div>
               <h3 className="font-headline-md text-headline-md text-on-surface font-bold">Superior Quality</h3>
               <p className="font-body-md text-body-md text-on-surface-variant">
-                Our tutors focus on basic study skills and homework efficiency for real improvement.
+                Tutors hold a degree in mathematics or a closely related field and are assessed on the specific
+                course and standards they teach.
               </p>
               <ul className="space-y-3 pt-2">
                 <li className="flex items-center gap-3 font-label-md text-label-md text-on-surface font-medium">
                   <CheckCircle2 className="text-lime-green shrink-0" size={20} fill="currentColor" stroke="white" />
-                  UK Curriculum Experts
+                  State standards specialists
                 </li>
                 <li className="flex items-center gap-3 font-label-md text-label-md text-on-surface font-medium">
                   <CheckCircle2 className="text-lime-green shrink-0" size={20} fill="currentColor" stroke="white" />
-                  Personalized Study Plans
+                  Personalized study plans
                 </li>
               </ul>
             </div>
@@ -146,115 +253,119 @@ export default function MathSubject({ onNavigate }: SubjectComponentProps) {
         </div>
       </section>
 
-      {/* Lesson Plans For Each Year */}
+      {/* Grade by Grade Coverage */}
       <section className="py-24 bg-surface-container-low">
         <div className="learning-lane max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop">
           <div className="flex flex-col lg:flex-row gap-16 items-start">
-            <div className="lg:w-1/3 sticky top-32 space-y-6">
+            <div className="lg:w-1/3 lg:sticky lg:top-32 space-y-6">
               <span className="text-primary font-label-sm text-label-sm uppercase tracking-widest font-semibold">Curriculum focus</span>
-              <h2 className="font-headline-lg text-display-lg-mobile text-on-surface font-bold">Math Lesson Plans For Each Year</h2>
+              <h2 className="font-headline-lg text-display-lg-mobile text-on-surface font-bold">Math Coverage, Grade by Grade</h2>
               <p className="font-body-md text-body-md text-on-surface-variant">
-                We cover the entire UK educational journey. From foundational counting in Year 1 to complex Poisson distributions in A-Levels.
+                From counting in Grade 1 to derivatives in AP Calculus. High school math in the US is organised
+                by course rather than by grade, so a student takes Algebra 1 whenever their school schedules it,
+                whether that is Grade 8 or Grade 9.
               </p>
               <div className="pt-6">
                 <div className="p-6 bg-white rounded-2xl card-elevation-1 space-y-4">
                   <div className="flex items-center gap-4">
                     <GraduationCap size={24} className="text-royal-purple" />
-                    <span className="font-headline-md text-headline-md font-bold text-charcoal">Year 1 – 13</span>
+                    <span className="font-headline-md text-headline-md font-bold text-charcoal">Grades 1 &ndash; 12</span>
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    <span className="px-3 py-1 bg-royal-purple/5 text-royal-purple rounded-full font-label-sm text-label-sm font-semibold">KS1/2</span>
-                    <span className="px-3 py-1 bg-royal-purple/5 text-royal-purple rounded-full font-label-sm text-label-sm font-semibold">KS3</span>
-                    <span className="px-3 py-1 bg-royal-purple/5 text-royal-purple rounded-full font-label-sm text-label-sm font-semibold">GCSE</span>
-                    <span className="px-3 py-1 bg-royal-purple/5 text-royal-purple rounded-full font-label-sm text-label-sm font-semibold">A-Level</span>
+                    <span className="px-3 py-1 bg-royal-purple/5 text-royal-purple rounded-full font-label-sm text-label-sm font-semibold">Elementary</span>
+                    <span className="px-3 py-1 bg-royal-purple/5 text-royal-purple rounded-full font-label-sm text-label-sm font-semibold">Middle School</span>
+                    <span className="px-3 py-1 bg-royal-purple/5 text-royal-purple rounded-full font-label-sm text-label-sm font-semibold">High School</span>
+                    <span className="px-3 py-1 bg-royal-purple/5 text-royal-purple rounded-full font-label-sm text-label-sm font-semibold">AP</span>
                   </div>
                 </div>
               </div>
             </div>
             <div className="lg:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
-              {Array.from({ length: 13 }, (_, i) => i + 1).map((year) => (
-                <button
-                  key={year}
-                  onClick={() => onNavigate('trial')}
-                  className={`group flex items-center justify-between p-6 bg-white rounded-2xl card-elevation-1 hover:bg-royal-purple transition-all duration-300 text-left cursor-pointer ${
-                    year === 13 ? 'sm:col-span-2' : ''
-                  }`}
-                >
-                  <span className="font-headline-md text-headline-md text-on-surface group-hover:text-white transition-colors font-bold">
-                    Lesson Plan Year {year}
-                  </span>
-                  <LigatureIcon name="chevron_right" className="text-royal-purple group-hover:text-white transition-colors" />
-                </button>
+              {GRADE_TOPICS.map((item) => (
+                <div key={item.grade} className="p-6 bg-white rounded-2xl card-elevation-1 space-y-3">
+                  <div className="flex items-baseline justify-between gap-3">
+                    <h3 className="font-headline-md text-headline-md text-on-surface font-bold">{item.grade}</h3>
+                    <span className="font-label-sm text-label-sm text-primary font-semibold shrink-0">{item.band}</span>
+                  </div>
+                  <ul className="space-y-2">
+                    {item.topics.map((topic) => (
+                      <li key={topic} className="flex items-start gap-2 font-body-md text-body-md text-on-surface-variant">
+                        <CheckCircle2 className="text-lime-green shrink-0 mt-1" size={16} fill="currentColor" stroke="white" />
+                        {topic}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Meet our Teachers */}
+      {/* Where students lose ground */}
       <section className="py-24 bg-white">
         <div className="learning-lane max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop">
           <div className="text-center mb-16 space-y-4">
-            <h2 className="font-headline-lg text-headline-lg text-on-surface font-bold">Meet our Teachers</h2>
-            <p className="font-body-md text-body-md text-on-surface-variant text-center max-w-2xl mx-auto font-medium">Qualified, patient, and dedicated math specialists.</p>
+            <h2 className="font-headline-lg text-headline-lg text-on-surface font-bold">Where Students Actually Lose Ground</h2>
+            <p className="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">
+              Math is cumulative, which means the topic a student is failing is rarely the topic that caused the
+              problem. These are the three places gaps usually open.
+            </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div className="group relative overflow-hidden rounded-[32px] aspect-[4/5] card-elevation-1">
-              <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuBq9owKw2H_B64Y6pagNoRtEZ5d7HkC7I5UMO4QPcPgpOO8rr7fmZ_ZzhnXzZjj_rSBvpqAnOhQRI9hW1P3s9UpCiRD0QarG9i0DCuIm1yZPLiEaDD6LflSXzFtRK0Q-g7jaXhAWsnl9SF1XlEgnyTuJF5r7FCekNLmQww4lXtzbC3IIgEO67ioGiSzZ354sVB07Y17HxZZ1s1CfiPXAbHf3hn-kONtzvMQy_0-7f5MY4FZa018P7EZUw")' }}></div>
-              <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-transparent opacity-80"></div>
-              <div className="absolute bottom-0 p-6 w-full text-white">
-                <p className="font-headline-md text-headline-md font-bold">Dr. James Wilson</p>
-                <p className="font-label-sm text-label-sm opacity-80 uppercase tracking-widest font-semibold">A-Level Specialist</p>
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-soft-gray p-10 rounded-[32px] card-elevation-1 space-y-4">
+              <span className="font-label-sm text-label-sm text-primary uppercase tracking-widest font-semibold">Grades 3&ndash;5</span>
+              <h3 className="font-headline-md text-headline-md text-on-surface font-bold">Fractions</h3>
+              <p className="font-body-md text-body-md text-on-surface-variant">
+                The single most common source of later difficulty. A student who never fully understood
+                equivalent fractions will struggle with rational expressions in Algebra 2 six years later, and
+                the connection is rarely obvious to anyone involved.
+              </p>
             </div>
-            <div className="group relative overflow-hidden rounded-[32px] aspect-[4/5] card-elevation-1">
-              <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuBSuj0H5tcjp3cg0SsMNs3bj8wKJJIL0t_9cQBY49p1fNKq-X500rWEY66cGGB9vGskPG6xm3VxF5Ep94PQXpJUTxTSWsL5Suiig8_ctEK437HOMRWv8gcG6PJG--HYosP02krj2mrWo2EsfxyA4UVu3zVmWuFhBHNfAVY6HPzlKFO8TgqpWhu1tijDrqVwyK0ozpQVVHoi-KH_SZ1vMAmYiSHpnTtE3IOj9-d4xRt_lcdbRgNqgGJc6Q")' }}></div>
-              <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-transparent opacity-80"></div>
-              <div className="absolute bottom-0 p-6 w-full text-white">
-                <p className="font-headline-md text-headline-md font-bold">Sarah Jenkins</p>
-                <p className="font-label-sm text-label-sm opacity-80 uppercase tracking-widest font-semibold">GCSE Expert</p>
-              </div>
+            <div className="bg-soft-gray p-10 rounded-[32px] card-elevation-1 space-y-4">
+              <span className="font-label-sm text-label-sm text-primary uppercase tracking-widest font-semibold">Grades 6&ndash;8</span>
+              <h3 className="font-headline-md text-headline-md text-on-surface font-bold">Proportional Reasoning</h3>
+              <p className="font-body-md text-body-md text-on-surface-variant">
+                Ratios, rates and proportional relationships are what Algebra 1 is built on. Middle school is
+                also where the Algebra 1 placement decision gets made, so an unnoticed gap here shapes the
+                entire high school pathway.
+              </p>
             </div>
-            <div className="group relative overflow-hidden rounded-[32px] aspect-[4/5] card-elevation-1">
-              <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuBOBLcbAyEnggp-K_qgXGBOYQT2pJYjRFsLzPUGPEoH4ngmEe050-8tb2fU66XKVbu4VcjQfJomECOVLkCNpV0UM_ITh2DML5CV0Qo37KdqrPj7GaTAIv6Cy1F_wPvgaEWsP49C0wQrLE80hY-vcuWI21XwIYn-bgc3dlrJaW-SvOLAsggHlEUFub8vV-UOM86yf7G7sWifs56f9sC-i9NXAgvD2unTnS8HWwfIw2-QDt8QElmSLwuYEQ")' }}></div>
-              <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-transparent opacity-80"></div>
-              <div className="absolute bottom-0 p-6 w-full text-white">
-                <p className="font-headline-md text-headline-md font-bold">Michael Chen</p>
-                <p className="font-label-sm text-label-sm opacity-80 uppercase tracking-widest font-semibold">KS2 &amp; Primary Math</p>
-              </div>
-            </div>
-            <div className="group relative overflow-hidden rounded-[32px] aspect-[4/5] card-elevation-1">
-              <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuB9zl6GHsbpEbDfeDGAf2nbGgbgzJelIVeyNTJpfq8I1CcLid7IJQAqheG-0p_jb_SZXed9EUEtCcVzFIYDu-S0KgI1rtBQNy7rt5ORT0BoPi0l5qQUiYSNHQimHfGaSLyShuR3UYY4IK4tzsp7qC8aQTjIWH_onSTaXYyRawdrjNc5OeW80rMC35K_xgm68fi_7foZgB8KBFOmyX7FMLSNnBtKdCo4LrOszy_2WYxkHZ9ot6av7tmhPg")' }}></div>
-              <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-transparent opacity-80"></div>
-              <div className="absolute bottom-0 p-6 w-full text-white">
-                <p className="font-headline-md text-headline-md font-bold">Eleanor Wright</p>
-                <p className="font-label-sm text-label-sm opacity-80 uppercase tracking-widest font-semibold">Calculus Specialist</p>
-              </div>
+            <div className="bg-soft-gray p-10 rounded-[32px] card-elevation-1 space-y-4">
+              <span className="font-label-sm text-label-sm text-primary uppercase tracking-widest font-semibold">Algebra 1</span>
+              <h3 className="font-headline-md text-headline-md text-on-surface font-bold">Abstraction</h3>
+              <p className="font-body-md text-body-md text-on-surface-variant">
+                The jump from arithmetic to working with unknowns catches out capable students. Many arrive
+                able to compute perfectly well but unused to reasoning about a quantity they cannot see, which
+                reads as a sudden collapse in ability when it is nothing of the kind.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Bento Grid */}
+      {/* How we match you */}
       <section className="py-24 bg-soft-gray overflow-hidden">
         <div className="learning-lane max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop">
           <div className="grid grid-cols-12 gap-6">
             <div className="col-span-12 md:col-span-8 bg-royal-purple p-8 md:p-12 rounded-[40px] text-white flex flex-col justify-between min-h-[460px]">
               <div>
-                <span className="font-label-sm text-label-sm uppercase tracking-[0.2em] opacity-80 font-semibold">Why Choose MMS?</span>
-                <h2 className="font-display-lg text-display-lg-mobile md:text-display-lg mt-4 leading-tight font-bold">Personalized 1-to-1 Sessions</h2>
+                <span className="font-label-sm text-label-sm uppercase tracking-[0.2em] opacity-80 font-semibold">How Matching Works</span>
+                <h2 className="font-display-lg text-display-lg-mobile md:text-display-lg mt-4 leading-tight font-bold">We Connect You With the Right Math Tutor</h2>
               </div>
               <p className="font-body-lg text-body-lg max-w-xl opacity-90 my-6 font-sans">
-                We deliver quality tutors to students who struggle with Math. Our sessions are designed to suit individual learning capacity, moving at a pace that ensures deep understanding without distraction.
+                We assess where your child actually stands, then pair them on three things: the course they are
+                taking, the standards their state uses, and how they learn. A strong mathematician is not
+                automatically the right tutor for a student who has lost confidence, and we match for both.
               </p>
               <div className="flex flex-wrap gap-4">
                 <div className="px-6 py-4 bg-white/10 backdrop-blur-md rounded-2xl">
-                  <p className="font-headline-md text-headline-md font-bold">100%</p>
-                  <p className="font-label-sm text-label-sm opacity-70 font-medium">Focus on You</p>
+                  <p className="font-headline-md text-headline-md font-bold">1:1</p>
+                  <p className="font-label-sm text-label-sm opacity-70 font-medium">Every session</p>
                 </div>
                 <div className="px-6 py-4 bg-white/10 backdrop-blur-md rounded-2xl">
                   <p className="font-headline-md text-headline-md font-bold">Free</p>
-                  <p className="font-label-sm text-label-sm opacity-70 font-medium">Trial Class</p>
+                  <p className="font-label-sm text-label-sm opacity-70 font-medium">Rematch anytime</p>
                 </div>
               </div>
             </div>
@@ -262,15 +373,17 @@ export default function MathSubject({ onNavigate }: SubjectComponentProps) {
               <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center text-secondary">
                 <Zap size={40} />
               </div>
-              <h3 className="font-headline-lg text-headline-lg text-secondary leading-tight font-bold">Constructivist Approach</h3>
+              <h3 className="font-headline-lg text-headline-lg text-secondary leading-tight font-bold">Concept First, Then Method</h3>
               <p className="font-body-md text-body-md text-on-secondary-fixed-variant">
-                Interactive sessions with presentations and online tools to make learning enjoyable and efficient.
+                We teach why a method works before drilling it. Students who only memorise procedures stall the
+                moment a problem is phrased unfamiliarly.
               </p>
             </div>
             <div className="col-span-12 md:col-span-4 bg-white p-8 md:p-10 rounded-[40px] card-elevation-1 space-y-6">
               <h3 className="font-headline-md text-headline-md text-on-surface font-bold">Digital Resources</h3>
               <p className="font-body-md text-body-md text-on-surface-variant">
-                Access to hundreds of notes, animations, videos, and exercises to make math mastery easier.
+                Worked examples, practice sets and recorded sessions, all saved to your account so a method can
+                be revisited weeks later when it comes up again in class.
               </p>
               <div className="w-full h-32 bg-soft-gray rounded-2xl relative overflow-hidden">
                 <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #6158E9 1px, transparent 0)', backgroundSize: '20px 20px' }}></div>
@@ -278,19 +391,45 @@ export default function MathSubject({ onNavigate }: SubjectComponentProps) {
             </div>
             <div className="col-span-12 md:col-span-8 bg-surface-container-highest p-8 md:p-12 rounded-[40px] flex flex-col md:flex-row items-center justify-between gap-8">
               <div className="space-y-6">
-                <h3 className="font-headline-lg text-headline-lg text-on-surface font-bold">Trusted by All Parents</h3>
-                <p className="font-body-md text-body-md text-on-surface-variant italic">
-                  "My daughter's grades improved significantly in just three months. The tutor is incredibly patient and knows exactly how to explain complex topics."
+                <h3 className="font-headline-lg text-headline-lg text-on-surface font-bold">Progress Parents Can Follow</h3>
+                <p className="font-body-md text-body-md text-on-surface-variant">
+                  A written summary after every session setting out what was covered and what to practise, plus
+                  a bi-weekly report showing which standards have been mastered and which still need attention.
+                  You can also review any recorded lesson yourself.
                 </p>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-outline-variant"></div>
-                  <div>
-                    <p className="font-headline-md text-label-md text-on-surface font-bold">Sarah Mitchell</p>
-                    <p className="font-label-sm text-label-sm text-on-surface-variant font-medium">Parent of Year 11 Student</p>
-                  </div>
-                </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-24 bg-white border-t border-surface-container">
+        <div className="learning-lane max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop">
+          <h2 className="text-headline-lg font-display text-charcoal mb-4 text-center font-bold">Frequently Asked Questions</h2>
+          <p className="font-body-md text-on-surface-variant max-w-2xl mx-auto mb-12 text-center">
+            The questions American parents ask us most often about math tutoring, placement and test preparation.
+          </p>
+          <div className="max-w-3xl mx-auto space-y-4">
+            {FAQS.map((faq, idx) => (
+              <div
+                key={idx}
+                className={`accordion-item bg-soft-gray rounded-2xl border transition-all cursor-pointer ${
+                  activeFaq === idx ? 'border-royal-purple shadow-ambient' : 'border-outline-variant/30'
+                }`}
+                onClick={() => toggleFaq(idx)}
+              >
+                <div className="flex justify-between items-center p-6">
+                  <h3 className="text-body-lg font-bold text-charcoal">{faq.q}</h3>
+                  <LigatureIcon name="expand_more" className={`transition-transform duration-200 ${activeFaq === idx ? 'rotate-180 text-primary' : 'text-charcoal'}`} />
+                </div>
+                {activeFaq === idx && (
+                  <div className="px-6 pb-6 text-on-surface-variant text-body-md animate-fade-in">
+                    {faq.a}
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -305,10 +444,11 @@ export default function MathSubject({ onNavigate }: SubjectComponentProps) {
             </div>
             <div className="relative z-10 space-y-8 max-w-2xl mx-auto">
               <h2 className="font-display-lg text-display-lg-mobile md:text-display-lg text-white font-bold">
-                Let’s Learn Together!
+                Let&rsquo;s Learn Together!
               </h2>
               <p className="font-body-lg text-body-lg text-white/80 font-sans">
-                Book a free trial lesson or get details about our Math lesson plans, prices, and timings according to the UK curriculum.
+                Book a free trial lesson, or ask us about lesson plans, pricing and scheduling for your
+                child&apos;s grade and state.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
                 <button
@@ -318,20 +458,20 @@ export default function MathSubject({ onNavigate }: SubjectComponentProps) {
                   Book Free Trial Now
                 </button>
                 <button
-                  onClick={() => onNavigate('a-levels')}
+                  onClick={() => onNavigate('pricing')}
                   className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-10 py-5 rounded-2xl font-headline-md text-headline-md hover:bg-white/20 transition-all font-bold cursor-pointer"
                 >
-                  Contact Us
+                  View Pricing
                 </button>
               </div>
               <div className="pt-6">
                 <p className="text-white/60 font-label-md text-label-md flex flex-wrap items-center justify-center gap-4">
                   <span className="flex items-center gap-1 font-medium">
-                    <Check size={18} /> No Credit Card Required
+                    <Check size={18} /> No credit card required
                   </span>
                   <span className="w-1 h-1 bg-white/40 rounded-full hidden sm:inline-block"></span>
                   <span className="flex items-center gap-1 font-medium">
-                    <Timer size={18} /> 45 Min Session
+                    <Timer size={18} /> 45 min session
                   </span>
                 </p>
               </div>

@@ -28,6 +28,7 @@ import {
   Users,
   Brain,
   ShieldCheck,
+  ChevronDown,
 } from 'lucide-react';
 
 interface SubjectComponentProps {
@@ -42,13 +43,13 @@ export default function EnglishSubject({ onNavigate }: SubjectComponentProps) {
         <div className="learning-lane max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <span className="inline-block bg-primary/10 text-royal-purple font-label-sm text-label-sm px-3 py-1 rounded-full uppercase tracking-wider font-semibold">
-              UK Curriculum Specialist
+              US Curriculum Specialist
             </span>
             <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-charcoal leading-tight font-bold">
-              Online English Tutor in the UK
+              Online English Tutor in USA
             </h1>
             <p className="font-body-lg text-body-lg text-on-surface-variant max-w-xl font-sans">
-              Personalized learning for students in Year 1-10. Get the English help you need right now from highly qualified experts who know how to help you truly understand.
+              Personalized 1-on-1 English tutoring for K-12 and test preparation. Strengthen reading comprehension, essay writing, grammar, and literary analysis with expert US curriculum tutors.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <button
@@ -80,7 +81,7 @@ export default function EnglishSubject({ onNavigate }: SubjectComponentProps) {
                 />
               </div>
               <p className="font-label-sm text-label-sm text-on-surface-variant">
-                <span className="text-royal-purple font-bold">500+</span> Verified UK Tutors
+                <span className="text-royal-purple font-bold">500+</span> Verified US English Tutors
               </p>
             </div>
           </div>
@@ -88,7 +89,7 @@ export default function EnglishSubject({ onNavigate }: SubjectComponentProps) {
             <div className="absolute -top-12 -right-12 w-64 h-64 bg-lime-green/20 rounded-full blur-3xl -z-10"></div>
             <img
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKa-X47XE51c6BNF2ihvhYQrtNIg61tH6wzGJp87yEUdD-GKVbURmzK1k_9EMCMBR7GjFQUeVpgQZIgF1GHBfppT9nVcGTuNvjZFegtYk177FBCyTCzd5wamcPa9Ez8LmiYWbLsaNXFss1jOWP9oTEWWmmInzvLz2pHIj2cN3t4BVoXBaKYvd1jlWJbj5UCinK7qsBhebCSum0amzJbALEGiPn8kU1_XvOXjXixL7-opULQIAn2FMN0D16Ww6HYmqjzHGDUD7N_HfsCvw"
-              alt="English tutoring"
+              alt="Online English tutoring session for US students"
               className="w-full h-auto rounded-3xl custom-shadow object-cover"
             />
           </div>
@@ -100,7 +101,7 @@ export default function EnglishSubject({ onNavigate }: SubjectComponentProps) {
         <div className="learning-lane max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop text-center mb-16">
           <h2 className="font-headline-lg text-headline-lg text-charcoal mb-4 font-bold">What We Offer</h2>
           <p className="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">
-            Say goodbye to exhausting in-person classes. We connect you to professional UK-based English Tutors for focused one-on-one sessions.
+            Are you searching for an expert "online English tutor in USA"? Say goodbye to exhausting in-person classes. We connect you to professional US curriculum educators for focused one-on-one sessions.
           </p>
         </div>
         <div className="learning-lane max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop grid md:grid-cols-3 gap-gutter">
@@ -185,8 +186,8 @@ export default function EnglishSubject({ onNavigate }: SubjectComponentProps) {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter">
             <div className="md:col-span-4 bg-royal-purple text-white p-10 rounded-3xl flex flex-col justify-between">
               <div>
-                <h2 className="font-headline-lg text-headline-lg mb-4 font-bold">Curriculum &amp; Year Groups</h2>
-                <p className="font-body-md opacity-90">Tailored support for every stage of the UK educational journey.</p>
+                <h2 className="font-headline-lg text-headline-lg mb-4 font-bold">Curriculum &amp; Grade Levels</h2>
+                <p className="font-body-md opacity-90">Tailored support aligned with Common Core and state standards across the USA.</p>
               </div>
               <div className="mt-8">
                 <BookOpen size={64} className="opacity-20" />
@@ -195,18 +196,18 @@ export default function EnglishSubject({ onNavigate }: SubjectComponentProps) {
             <div className="md:col-span-8 grid md:grid-cols-3 gap-gutter">
               <div className="bg-surface-container p-8 rounded-3xl flex flex-col items-center text-center justify-center border border-outline-variant">
                 <GraduationCap size={32} className="text-primary mb-3" />
-                <h4 className="font-headline-md text-headline-md text-charcoal mb-2 font-bold">1st – 10th Year</h4>
-                <p className="font-label-sm uppercase tracking-widest text-primary font-semibold">Foundational</p>
+                <h4 className="font-headline-md text-headline-md text-charcoal mb-2 font-bold">Elementary (K–5)</h4>
+                <p className="font-label-sm uppercase tracking-widest text-primary font-semibold">Foundational Reading</p>
               </div>
               <div className="bg-lime-green/10 p-8 rounded-3xl flex flex-col items-center text-center justify-center border border-lime-green/30">
                 <Award size={32} className="text-secondary mb-3" />
-                <h4 className="font-headline-md text-headline-md text-charcoal mb-2 font-bold">GCSE &amp; A-Level</h4>
-                <p className="font-label-sm uppercase tracking-widest text-secondary font-semibold">Expert Prep</p>
+                <h4 className="font-headline-md text-headline-md text-charcoal mb-2 font-bold">Middle &amp; High (6–12)</h4>
+                <p className="font-label-sm uppercase tracking-widest text-secondary font-semibold">Advanced Prep</p>
               </div>
               <div className="bg-surface-container p-8 rounded-3xl flex flex-col items-center text-center justify-center border border-outline-variant">
                 <FileText size={32} className="text-primary mb-3" />
-                <h4 className="font-headline-md text-headline-md text-charcoal mb-2 font-bold">Lesson Plans</h4>
-                <p className="font-label-sm uppercase tracking-widest text-primary font-semibold">Custom Drafted</p>
+                <h4 className="font-headline-md text-headline-md text-charcoal mb-2 font-bold">SAT / ACT &amp; AP</h4>
+                <p className="font-label-sm uppercase tracking-widest text-primary font-semibold">Test Excellence</p>
               </div>
             </div>
           </div>
@@ -219,7 +220,7 @@ export default function EnglishSubject({ onNavigate }: SubjectComponentProps) {
           <div className="w-full md:w-1/2">
             <div className="relative inline-block w-full">
               <img
-                alt="Professional Tutor"
+                alt="Professional US English Tutor"
                 className="rounded-3xl custom-shadow max-w-full w-full object-cover"
                 src="https://lh3.googleusercontent.com/aida/AP1WRLvJ5ZkW9ZVGSkaUXlGr-5dzzz-agCawRb5QGgtdLxg5-WbKT0Px57IhUeK4dTouTHoSkCJ_xaqN0HkhZYj2WV-ZsDjZMjsMNbZ1ylxAEsbYI7Y-YmykdCUgR0iUEBFrJxEvZv6PgTU3jErcV5JCtynNesuI_qAz1KtkklK9c_oatGuIN-U7ElZ78L0yOqAuU4AGndpmUqAUZkF32o8sQatr3gar2roWYWgT-e4dRmNwltnw5H-0Zw9Zv0OZ"
               />
@@ -230,19 +231,19 @@ export default function EnglishSubject({ onNavigate }: SubjectComponentProps) {
                   </div>
                   <div>
                     <p className="font-bold text-charcoal">98% Success Rate</p>
-                    <p className="text-xs text-on-surface-variant">Top-Tier GCSE Scoring</p>
+                    <p className="text-xs text-on-surface-variant">Top-Tier US Exam Scoring</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div className="w-full md:w-1/2 space-y-6">
-            <h2 className="font-headline-lg text-headline-lg text-charcoal font-bold">Top-Tier Online English Tutors in the UK</h2>
+            <h2 className="font-headline-lg text-headline-lg text-charcoal font-bold">Top-Tier Online English Tutors in the USA</h2>
             <p className="font-body-md text-on-surface-variant">
-              Find Your Perfect English Tutor Online and Score an A. MMS is a learning platform that offers tutoring services in a wide range of subjects. One of our major specializations is in the English language.
+              Find your perfect online English tutor in USA and elevate your reading comprehension, writing mechanics, and literary analysis. MathMakeSmart connects students nationwide with certified American literature and language specialists.
             </p>
             <p className="font-body-md text-on-surface-variant">
-              No matter where in the world you go, a good grasp of this language will help you excel. Our tutors ensure you communicate effectively, teaching skills and tricks to master the UK curriculum.
+              Whether you are preparing for state standardized testing, refining persuasive essay structures, or mastering AP English Literature, our instructors deliver targeted lessons tailored to your exact academic needs.
             </p>
             <div className="pt-4">
               <button
@@ -259,8 +260,8 @@ export default function EnglishSubject({ onNavigate }: SubjectComponentProps) {
       {/* Personalized Learning */}
       <section className="py-20 md:py-24 bg-soft-gray">
         <div className="learning-lane max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop mb-16 text-center">
-          <h2 className="font-headline-lg text-headline-lg text-charcoal mb-4 font-bold">Improve Your English With Personalised Learning</h2>
-          <p className="font-body-md text-on-surface-variant max-w-3xl mx-auto">Instructors create a detailed and suitable learning plan for you based on your level and capacity.</p>
+          <h2 className="font-headline-lg text-headline-lg text-charcoal mb-4 font-bold">Improve Your English With Personalized Learning</h2>
+          <p className="font-body-md text-on-surface-variant max-w-3xl mx-auto">Instructors create a detailed and suitable learning plan for you based on your proficiency level, grade requirements, and academic goals.</p>
         </div>
         <div className="learning-lane max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop grid md:grid-cols-3 gap-gutter">
           <div className="bg-white p-10 rounded-3xl border border-outline-variant/30 custom-shadow flex flex-col h-full">
@@ -269,7 +270,7 @@ export default function EnglishSubject({ onNavigate }: SubjectComponentProps) {
             </div>
             <h4 className="font-headline-md text-headline-md mb-4 text-royal-purple font-bold">1-to-1 Tutoring Sessions</h4>
             <p className="font-body-md text-on-surface-variant mb-6 flex-grow">
-              We assign each tutor only one student so that our professional can provide undivided attention and focus on the growth of one individual at a time.
+              We assign each tutor only one student so that our professional can provide undivided attention, focusing on individual reading speed, writing clarity, and critical thinking development.
             </p>
             <div className="w-full h-1 bg-primary/10 rounded-full overflow-hidden">
               <div className="w-1/3 h-full bg-royal-purple"></div>
@@ -281,7 +282,7 @@ export default function EnglishSubject({ onNavigate }: SubjectComponentProps) {
             </div>
             <h4 className="font-headline-md text-headline-md mb-4 text-royal-purple font-bold">Flexible Learning</h4>
             <p className="font-body-md text-on-surface-variant mb-6 flex-grow">
-              Tailored sessions suit your needs. Choose whatever topic or skill you want to master, or let our experts guide your learning path with detailed feedback.
+              Tailored sessions suit your busy schedule. Choose specific texts or writing styles to master, or let our experts guide your curriculum path with structured feedback.
             </p>
             <div className="w-full h-1 bg-primary/10 rounded-full overflow-hidden">
               <div className="w-2/3 h-full bg-royal-purple"></div>
@@ -293,7 +294,7 @@ export default function EnglishSubject({ onNavigate }: SubjectComponentProps) {
             </div>
             <h4 className="font-headline-md text-headline-md mb-4 text-royal-purple font-bold">Qualified Instructors</h4>
             <p className="font-body-md text-on-surface-variant mb-6 flex-grow">
-              Our team comprises top English tutors in the UK, highly qualified and well-versed in both academic grasp and oral communication.
+              Our team comprises top-tier English tutors in the USA, highly qualified and well-versed in Common Core standards, grammar mechanics, and rhetorical analysis.
             </p>
             <div className="w-full h-1 bg-primary/10 rounded-full overflow-hidden">
               <div className="w-full h-full bg-royal-purple"></div>
@@ -309,50 +310,180 @@ export default function EnglishSubject({ onNavigate }: SubjectComponentProps) {
             Concepts That We Cover
           </h2>
           <div className="space-y-16">
-            {/* Elementary */}
+            {/* Elementary School */}
             <div className="flex flex-col md:flex-row gap-12 items-start">
               <div className="md:w-1/3 sticky top-24">
-                <h3 className="font-headline-md text-headline-md text-royal-purple border-l-4 border-royal-purple pl-4 font-bold">Elementary School</h3>
-                <p className="font-body-md text-on-surface-variant mt-4">Foundational mastery for Year 1-6 students. Building confidence through articulated expression.</p>
+                <h3 className="font-headline-md text-headline-md text-royal-purple border-l-4 border-royal-purple pl-4 font-bold">Elementary School (K–5)</h3>
+                <p className="font-body-md text-on-surface-variant mt-4">Foundational literacy, phonics mastery, vocabulary expansion, and early sentence composition.</p>
               </div>
               <div className="md:w-2/3 bg-surface-container rounded-3xl p-8 grid md:grid-cols-2 gap-4 w-full">
-                <div className="flex items-center gap-3 bg-white p-4 rounded-xl font-medium"><BookOpen size={20} className="text-royal-purple" /> Reading &amp; Vocabulary</div>
-                <div className="flex items-center gap-3 bg-white p-4 rounded-xl font-medium"><PenLine size={20} className="text-royal-purple" /> Orally compose sentences</div>
-                <div className="flex items-center gap-3 bg-white p-4 rounded-xl font-medium"><SpellCheck size={20} className="text-royal-purple" /> Punctuation &amp; Spelling</div>
-                <div className="flex items-center gap-3 bg-white p-4 rounded-xl font-medium"><ScrollText size={20} className="text-royal-purple" /> Writing &amp; Composition</div>
-                <div className="flex items-center gap-3 bg-white p-4 rounded-xl font-medium"><Users size={20} className="text-royal-purple" /> Root words &amp; Suffixes</div>
-                <div className="flex items-center gap-3 bg-white p-4 rounded-xl font-medium"><Brain size={20} className="text-royal-purple" /> Expressing Ideas</div>
+                <div className="flex items-center gap-3 bg-white p-4 rounded-xl font-medium"><BookOpen size={20} className="text-royal-purple" /> Phonics &amp; Decoding</div>
+                <div className="flex items-center gap-3 bg-white p-4 rounded-xl font-medium"><PenLine size={20} className="text-royal-purple" /> Sentence Structure</div>
+                <div className="flex items-center gap-3 bg-white p-4 rounded-xl font-medium"><SpellCheck size={20} className="text-royal-purple" /> Spelling &amp; Mechanics</div>
+                <div className="flex items-center gap-3 bg-white p-4 rounded-xl font-medium"><ScrollText size={20} className="text-royal-purple" /> Narrative Writing</div>
+                <div className="flex items-center gap-3 bg-white p-4 rounded-xl font-medium"><Users size={20} className="text-royal-purple" /> Vocabulary Building</div>
+                <div className="flex items-center gap-3 bg-white p-4 rounded-xl font-medium"><Brain size={20} className="text-royal-purple" /> Reading Comprehension</div>
               </div>
             </div>
             {/* Middle School */}
             <div className="flex flex-col md:flex-row-reverse gap-12 items-start">
               <div className="md:w-1/3 sticky top-24">
-                <h3 className="font-headline-md text-headline-md text-royal-purple border-r-4 border-royal-purple pr-4 text-right font-bold">Middle School</h3>
-                <p className="font-body-md text-on-surface-variant mt-4 text-right">Transitioning to complex analysis and literary introduction for lower secondary.</p>
+                <h3 className="font-headline-md text-headline-md text-royal-purple border-r-4 border-royal-purple pr-4 text-right font-bold">Middle School (6–8)</h3>
+                <p className="font-body-md text-on-surface-variant mt-4 text-right">Transitioning to textual analysis, persuasive essays, and foundational literary devices.</p>
               </div>
               <div className="md:w-2/3 bg-soft-gray border border-outline-variant rounded-3xl p-8 grid md:grid-cols-2 gap-4 w-full">
-                <div className="flex items-center gap-3 bg-white p-4 rounded-xl font-medium"><Feather size={20} className="text-primary" /> Shakespeare Intro</div>
-                <div className="flex items-center gap-3 bg-white p-4 rounded-xl font-medium"><HelpCircle size={20} className="text-primary" /> Solve Comprehensions</div>
-                <div className="flex items-center gap-3 bg-white p-4 rounded-xl font-medium"><Library size={20} className="text-primary" /> Poetic Conventions</div>
-                <div className="flex items-center gap-3 bg-white p-4 rounded-xl font-medium"><Type size={20} className="text-primary" /> Complex Vocabulary</div>
-                <div className="flex items-center gap-3 bg-white p-4 rounded-xl font-medium"><Mic size={20} className="text-primary" /> Fluent Speaking</div>
-                <div className="flex items-center gap-3 bg-white p-4 rounded-xl font-medium"><Network size={20} className="text-primary" /> Plots &amp; Settings</div>
+                <div className="flex items-center gap-3 bg-white p-4 rounded-xl font-medium"><Feather size={20} className="text-primary" /> Literary Analysis</div>
+                <div className="flex items-center gap-3 bg-white p-4 rounded-xl font-medium"><HelpCircle size={20} className="text-primary" /> Persuasive Writing</div>
+                <div className="flex items-center gap-3 bg-white p-4 rounded-xl font-medium"><Library size={20} className="text-primary" /> Grammar &amp; Syntax</div>
+                <div className="flex items-center gap-3 bg-white p-4 rounded-xl font-medium"><Type size={20} className="text-primary" /> Advanced Vocabulary</div>
+                <div className="flex items-center gap-3 bg-white p-4 rounded-xl font-medium"><Mic size={20} className="text-primary" /> Public Speaking</div>
+                <div className="flex items-center gap-3 bg-white p-4 rounded-xl font-medium"><Network size={20} className="text-primary" /> Research Skills</div>
               </div>
             </div>
-            {/* Secondary */}
+            {/* High School & AP */}
             <div className="flex flex-col md:flex-row gap-12 items-start">
               <div className="md:w-1/3 sticky top-24">
-                <h3 className="font-headline-md text-headline-md text-royal-purple border-l-4 border-royal-purple pl-4 font-bold">GCSE &amp; IGCSE</h3>
-                <p className="font-body-md text-on-surface-variant mt-4">Critical analysis and examination-focused training for top academic results.</p>
+                <h3 className="font-headline-md text-headline-md text-royal-purple border-l-4 border-royal-purple pl-4 font-bold">High School &amp; AP (9–12)</h3>
+                <p className="font-body-md text-on-surface-variant mt-4">Advanced literary critique, rhetorical analysis, SAT/ACT English prep, and AP exam mastery.</p>
               </div>
               <div className="md:w-2/3 bg-royal-purple p-8 rounded-3xl grid md:grid-cols-2 gap-4 w-full">
-                <div className="flex items-center gap-3 bg-white/10 text-white p-4 rounded-xl backdrop-blur-md font-medium"><Star size={20} /> Analytical Skills</div>
-                <div className="flex items-center gap-3 bg-white/10 text-white p-4 rounded-xl backdrop-blur-md font-medium"><ClipboardCheck size={20} /> Implicit Meanings</div>
-                <div className="flex items-center gap-3 bg-white/10 text-white p-4 rounded-xl backdrop-blur-md font-medium"><CheckCircle2 size={20} /> Evaluate Facts</div>
-                <div className="flex items-center gap-3 bg-white/10 text-white p-4 rounded-xl backdrop-blur-md font-medium"><PenTool size={20} /> Articulate Thoughts</div>
-                <div className="flex items-center gap-3 bg-white/10 text-white p-4 rounded-xl backdrop-blur-md font-medium"><Award size={20} /> GCSE Literature Prep</div>
-                <div className="flex items-center gap-3 bg-white/10 text-white p-4 rounded-xl backdrop-blur-md font-medium"><CheckCheck size={20} /> Advanced Grammar</div>
+                <div className="flex items-center gap-3 bg-white/10 text-white p-4 rounded-xl backdrop-blur-md font-medium"><Star size={20} /> Rhetorical Analysis</div>
+                <div className="flex items-center gap-3 bg-white/10 text-white p-4 rounded-xl backdrop-blur-md font-medium"><ClipboardCheck size={20} /> Argumentative Essays</div>
+                <div className="flex items-center gap-3 bg-white/10 text-white p-4 rounded-xl backdrop-blur-md font-medium"><CheckCircle2 size={20} /> SAT / ACT Prep</div>
+                <div className="flex items-center gap-3 bg-white/10 text-white p-4 rounded-xl backdrop-blur-md font-medium"><PenTool size={20} /> AP Literature Prep</div>
+                <div className="flex items-center gap-3 bg-white/10 text-white p-4 rounded-xl backdrop-blur-md font-medium"><Award size={20} /> Comparative Literature</div>
+                <div className="flex items-center gap-3 bg-white/10 text-white p-4 rounded-xl backdrop-blur-md font-medium"><CheckCheck size={20} /> College Essay Coaching</div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* English Lesson Plans For Each Grade */}
+      <section className="py-20 md:py-24 bg-soft-gray">
+        <div className="learning-lane max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop text-center mb-16">
+          <h2 className="font-headline-lg text-headline-lg text-charcoal mb-4 font-bold">English Lesson Plans For Each Grade</h2>
+          <p className="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">
+            Explore our structured, grade-specific English lesson plans designed to build comprehensive reading, writing, and language proficiency for US students.
+          </p>
+        </div>
+        <div className="learning-lane max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop grid md:grid-cols-3 gap-gutter">
+          <div className="bg-white p-8 rounded-2xl shadow-sm border border-outline-variant/30 flex flex-col justify-between">
+            <div>
+              <div className="w-12 h-12 bg-primary/10 text-royal-purple rounded-xl flex items-center justify-center mb-4">
+                <BookOpen size={24} />
+              </div>
+              <h3 className="font-headline-md text-headline-md mb-2 text-charcoal font-bold">Grade 5 English</h3>
+              <p className="text-on-surface-variant text-sm mb-6">Focuses on advanced vocabulary, complex sentence structures, narrative writing, and text comprehension.</p>
+            </div>
+            <button
+              onClick={() => onNavigate('curriculum')}
+              className="inline-flex items-center gap-2 text-royal-purple font-label-md font-bold hover:underline cursor-pointer"
+            >
+              View Lesson Plan <ArrowRight size={16} />
+            </button>
+          </div>
+          <div className="bg-white p-8 rounded-2xl shadow-sm border border-outline-variant/30 flex flex-col justify-between">
+            <div>
+              <div className="w-12 h-12 bg-primary/10 text-royal-purple rounded-xl flex items-center justify-center mb-4">
+                <FileText size={24} />
+              </div>
+              <h3 className="font-headline-md text-headline-md mb-2 text-charcoal font-bold">Grade 6 English</h3>
+              <p className="text-on-surface-variant text-sm mb-6">Introduces literary analysis, introductory poetry, citing textual evidence, and persuasive composition.</p>
+            </div>
+            <button
+              onClick={() => onNavigate('curriculum')}
+              className="inline-flex items-center gap-2 text-royal-purple font-label-md font-bold hover:underline cursor-pointer"
+            >
+              View Lesson Plan <ArrowRight size={16} />
+            </button>
+          </div>
+          <div className="bg-white p-8 rounded-2xl shadow-sm border border-outline-variant/30 flex flex-col justify-between">
+            <div>
+              <div className="w-12 h-12 bg-primary/10 text-royal-purple rounded-xl flex items-center justify-center mb-4">
+                <PenLine size={24} />
+              </div>
+              <h3 className="font-headline-md text-headline-md mb-2 text-charcoal font-bold">Grade 7 English</h3>
+              <p className="text-on-surface-variant text-sm mb-6">Deepens comprehension of thematic elements, argumentative essay organization, and grammar mechanics.</p>
+            </div>
+            <button
+              onClick={() => onNavigate('curriculum')}
+              className="inline-flex items-center gap-2 text-royal-purple font-label-md font-bold hover:underline cursor-pointer"
+            >
+              View Lesson Plan <ArrowRight size={16} />
+            </button>
+          </div>
+          <div className="bg-white p-8 rounded-2xl shadow-sm border border-outline-variant/30 flex flex-col justify-between">
+            <div>
+              <div className="w-12 h-12 bg-primary/10 text-royal-purple rounded-xl flex items-center justify-center mb-4">
+                <Feather size={24} />
+              </div>
+              <h3 className="font-headline-md text-headline-md mb-2 text-charcoal font-bold">Grade 8 English</h3>
+              <p className="text-on-surface-variant text-sm mb-6">Covers classic American literature excerpts, structural analysis, research writing, and speech delivery.</p>
+            </div>
+            <button
+              onClick={() => onNavigate('curriculum')}
+              className="inline-flex items-center gap-2 text-royal-purple font-label-md font-bold hover:underline cursor-pointer"
+            >
+              View Lesson Plan <ArrowRight size={16} />
+            </button>
+          </div>
+          <div className="bg-white p-8 rounded-2xl shadow-sm border border-outline-variant/30 flex flex-col justify-between">
+            <div>
+              <div className="w-12 h-12 bg-primary/10 text-royal-purple rounded-xl flex items-center justify-center mb-4">
+                <Award size={24} />
+              </div>
+              <h3 className="font-headline-md text-headline-md mb-2 text-charcoal font-bold">Grade 9 English</h3>
+              <p className="text-on-surface-variant text-sm mb-6">Focuses on high school literary analysis, rhetorical devices, vocabulary development, and thesis-driven essays.</p>
+            </div>
+            <button
+              onClick={() => onNavigate('curriculum')}
+              className="inline-flex items-center gap-2 text-royal-purple font-label-md font-bold hover:underline cursor-pointer"
+            >
+              View Lesson Plan <ArrowRight size={16} />
+            </button>
+          </div>
+          <div className="bg-white p-8 rounded-2xl shadow-sm border border-outline-variant/30 flex flex-col justify-between">
+            <div>
+              <div className="w-12 h-12 bg-primary/10 text-royal-purple rounded-xl flex items-center justify-center mb-4">
+                <Star size={24} />
+              </div>
+              <h3 className="font-headline-md text-headline-md mb-2 text-charcoal font-bold">Grade 10 English</h3>
+              <p className="text-on-surface-variant text-sm mb-6">Prepares students for rigorous standardized testing, advanced literary critique, and collegiate writing standards.</p>
+            </div>
+            <button
+              onClick={() => onNavigate('curriculum')}
+              className="inline-flex items-center gap-2 text-royal-purple font-label-md font-bold hover:underline cursor-pointer"
+            >
+              View Lesson Plan <ArrowRight size={16} />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQs Section */}
+      <section className="py-20 md:py-24">
+        <div className="learning-lane max-w-4xl mx-auto px-margin-mobile md:px-margin-desktop">
+          <div className="text-center mb-16">
+            <h2 className="font-headline-lg text-headline-lg text-charcoal mb-4 font-bold">Frequently Asked Questions</h2>
+            <p className="font-body-md text-on-surface-variant">Got questions about our online English tutoring services in the USA? Find answers below.</p>
+          </div>
+          <div className="space-y-6">
+            <div className="bg-surface-container p-6 rounded-2xl border border-outline-variant/50">
+              <h3 className="font-headline-md text-headline-md text-charcoal font-bold mb-2">How do online English tutoring sessions work?</h3>
+              <p className="text-on-surface-variant">Sessions are conducted 1-on-1 via secure video conferencing platforms (Zoom or Google Meet) with interactive digital whiteboards, shared document editing, and structured lesson materials tailored to US Common Core standards.</p>
+            </div>
+            <div className="bg-surface-container p-6 rounded-2xl border border-outline-variant/50">
+              <h3 className="font-headline-md text-headline-md text-charcoal font-bold mb-2">Are your tutors experienced with the US curriculum?</h3>
+              <p className="text-on-surface-variant">Yes! All our English tutors specialize in the US curriculum, covering K-12 requirements, state testing, SAT/ACT English preparation, and AP Literature/Language coursework.</p>
+            </div>
+            <div className="bg-surface-container p-6 rounded-2xl border border-outline-variant/50">
+              <h3 className="font-headline-md text-headline-md text-charcoal font-bold mb-2">Can I book a free trial session before committing?</h3>
+              <p className="text-on-surface-variant">Absolutely. We offer a completely free trial lesson with no payment required so you can experience our teaching methodology and evaluate tutor compatibility before choosing a package.</p>
+            </div>
+            <div className="bg-surface-container p-6 rounded-2xl border border-outline-variant/50">
+              <h3 className="font-headline-md text-headline-md text-charcoal font-bold mb-2">How do you track student progress?</h3>
+              <p className="text-on-surface-variant">Our tutors provide continuous feedback, periodic assessments, and customized progress reports focusing on reading comprehension, vocabulary retention, and essay writing milestones.</p>
             </div>
           </div>
         </div>
@@ -363,7 +494,7 @@ export default function EnglishSubject({ onNavigate }: SubjectComponentProps) {
         <div className="learning-lane max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop bg-white rounded-[40px] shadow-xl overflow-hidden flex flex-col md:flex-row">
           <div className="md:w-1/2 p-8 md:p-16 flex flex-col justify-center">
             <h2 className="font-headline-lg text-headline-lg text-charcoal mb-6 font-bold">Book Your Free Trial Today</h2>
-            <p className="font-body-md text-on-surface-variant mb-8">It's your right to take a free English trial lesson before booking any packages. No payment required — just tell us your availability.</p>
+            <p className="font-body-md text-on-surface-variant mb-8">Take a free online English trial lesson before booking any packages. No payment required — just tell us your availability.</p>
             <div className="space-y-4">
               <div className="flex items-center gap-4">
                 <div className="w-10 h-10 bg-lime-green/20 text-secondary rounded-full flex items-center justify-center font-bold">1</div>
